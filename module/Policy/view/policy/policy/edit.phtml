@@ -1,0 +1,87 @@
+<?php
+// module/policy/view/policy/policy/edit.phtml:
+
+$title = 'Edit Policy';
+$this->headTitle($title);
+?>
+    <h1><?= $this->escapeHtml($title) ?></h1>
+<?php
+$firstName = $form->get('first_name');
+$firstName->setAttribute('class', 'form-control');
+$firstName->setAttribute('placeholder', 'First Name');
+
+// This provides a default CSS class and placeholder text for the artist element:
+$lastName = $form->get('last_name');
+$lastName->setAttribute('class', 'form-control');
+$lastName->setAttribute('placeholder', 'Last Name');
+
+$startDate = $form->get('start_date');
+$startDate->setAttribute('class', 'form-control');
+$startDate->setAttribute('placeholder', 'Start Date');
+
+$endDate = $form->get('end_date');
+$endDate->setAttribute('class', 'form-control');
+$endDate->setAttribute('placeholder', 'End Date');
+
+$premium = $form->get('premium');
+$premium->setAttribute('class', 'form-control');
+$premium->setAttribute('placeholder', 'Premium');
+
+$policyNumber = $form->get('policy_number');
+$policyNumber->setAttribute('class', 'form-control');
+$policyNumber->setAttribute('placeholder', 'Policy Number');
+
+$submit = $form->get('submit');
+$submit->setAttribute('class', 'btn btn-primary');
+
+$form->setAttribute('action', $this->url('policy', [
+    'action' => 'edit',
+    'id'     => $id,
+]));
+$form->prepare();
+
+echo $this->form()->openTag($form);
+?>
+    <div class="form-group">
+        <?= $this->formLabel($firstName) ?>
+        <?= $this->formElement($firstName) ?>
+        <?= $this->formElementErrors()->render($firstName, ['class' => 'help-block']) ?>
+    </div>
+
+    <div class="form-group">
+        <?= $this->formLabel($lastName) ?>
+        <?= $this->formElement($lastName) ?>
+        <?= $this->formElementErrors()->render($lastName, ['class' => 'help-block']) ?>
+    </div>
+
+    <div class="form-group">
+        <?= $this->formLabel($policyNumber) ?>
+        <?= $this->formElement($policyNumber) ?>
+        <?= $this->formElementErrors()->render($policyNumber, ['class' => 'help-block']) ?>
+    </div>
+
+    <div class="form-group">
+        <?= $this->formLabel($startDate) ?>
+        <?= $this->formElement($startDate) ?>
+        <?= $this->formElementErrors()->render($startDate, ['class' => 'help-block']) ?>
+    </div>
+
+    <div class="form-group">
+        <?= $this->formLabel($endDate) ?>
+        <?= $this->formElement($endDate) ?>
+        <?= $this->formElementErrors()->render($endDate, ['class' => 'help-block']) ?>
+    </div>
+
+    <div class="form-group">
+        <?= $this->formLabel($premium) ?>
+        <?= $this->formElement($premium) ?>
+        <?= $this->formElementErrors()->render($premium, ['class' => 'help-block']) ?>
+    </div>
+
+<?php
+echo $this->formSubmit($submit);
+echo $this->formHidden($form->get('id'));
+?>
+    <a href="<?= $this->url('policy', ['action' => 'index']) ?>" class="btn btn-danger" >Cancel</a>
+<?php
+echo $this->form()->closeTag();

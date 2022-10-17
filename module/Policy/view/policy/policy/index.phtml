@@ -1,0 +1,45 @@
+<?php
+$title = 'Policies | MMM';
+$this->headTitle($title);
+?>
+<h1><?= $this->escapeHtml($title) ?></h1>
+<p class="float-right">
+    <a href="<?= $this->url('policy', ['action' => 'add']) ?>" class="btn btn-success" >Add New Policy</a>
+</p>
+
+<table class="table">
+    <tr>
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th>Policy Number</th>
+        <th>Start Date</th>
+        <th>End Date</th>
+        <th>Premium</th>
+        <th>&nbsp;</th>
+    </tr>
+    <?php foreach ($this->paginator as $policy) : ?>
+        <tr>
+            <td><?= $this->escapeHtml($policy->firstName) ?></td>
+            <td><?= $this->escapeHtml($policy->firstName) ?></td>
+            <td><?= $this->escapeHtml($policy->policyNumber) ?></td>
+            <td><?= $this->escapeHtml($policy->startDate) ?></td>
+            <td><?= $this->escapeHtml($policy->endDate) ?></td>
+            <td><?= $this->escapeHtml($policy->premium) ?></td>
+            <td>
+                <a href="<?= $this->url('policy', ['action' => 'edit', 'id' => $policy->id]) ?>" class="btn btn-success" >Edit</a>
+                <a href="<?= $this->url('policy', ['action' => 'delete', 'id' => $policy->id]) ?>" class="btn btn-danger" >Delete</a>
+            </td>
+        </tr>
+    <?php endforeach; ?>
+</table>
+
+<?= $this->paginationControl(
+// The paginator object:
+    $this->paginator,
+    // The scrolling style:
+    'sliding',
+    // The partial to use to render the control:
+    'partial/paginator',
+    // The route to link to when a user clicks a control link:
+    ['route' => 'policy']
+) ?>
