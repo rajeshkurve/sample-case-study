@@ -1,5 +1,5 @@
 <?php
-$title = 'Policies | MMM';
+$title = 'Policies | MMC';
 $this->headTitle($title);
 ?>
 <h1><?= $this->escapeHtml($title) ?></h1>
@@ -20,7 +20,7 @@ $this->headTitle($title);
     <?php foreach ($this->paginator as $policy) : ?>
         <tr>
             <td><?= $this->escapeHtml($policy->firstName) ?></td>
-            <td><?= $this->escapeHtml($policy->firstName) ?></td>
+            <td><?= $this->escapeHtml($policy->lastName) ?></td>
             <td><?= $this->escapeHtml($policy->policyNumber) ?></td>
             <td><?= $this->escapeHtml($policy->startDate) ?></td>
             <td><?= $this->escapeHtml($policy->endDate) ?></td>

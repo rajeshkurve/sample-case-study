@@ -14,7 +14,7 @@ class PolicyDateValidator extends AbstractValidator
      * @var array
      */
     protected $messageTemplates = [
-        self::NOT_GREATER      => 'Policy Enddate should be greater that Policy Start Date',
+        self::NOT_GREATER      => 'Policy End date should be greater that Policy Start Date',
     ];
 
     /** @var array */
@@ -74,7 +74,7 @@ class PolicyDateValidator extends AbstractValidator
     }
 
     /**
-     * Returns the min option
+     * Returns the date option
      *
      * @return mixed
      */

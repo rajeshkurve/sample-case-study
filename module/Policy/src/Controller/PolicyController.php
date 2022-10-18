@@ -42,10 +42,9 @@ class PolicyController extends AbstractActionController
         }
 
         $policy = new Policy();
-        $inputFilters = $policy->getInputFilter();
-
         $form->setData($request->getPost());
 
+        $inputFilters = $policy->getInputFilter();
         $inputFilters->add([
                 'name' => 'end_date',
                 'validators' => [
@@ -59,7 +58,7 @@ class PolicyController extends AbstractActionController
 
         $form->setInputFilter($inputFilters);
 
-        if (!$form->isValid() ) {
+        if (!$form->isValid( ) ) {
             return ['form' => $form];
         }
 
@@ -85,7 +84,7 @@ class PolicyController extends AbstractActionController
 
         $form = new PolicyForm();
         $form->bind($policy);
-        $form->get('submit')->setAttribute('value', 'Edit');
+        $form->get('submit')->setAttribute('value', 'Save');
 
         $request = $this->getRequest();
         $viewData = ['id' => $id, 'form' => $form];
@@ -95,7 +94,19 @@ class PolicyController extends AbstractActionController
             return $viewData;
         }
 
-        $form->setInputFilter($policy->getInputFilter());
+        $inputFilters = $policy->getInputFilter();
+        $inputFilters->add([
+                'name' => 'end_date',
+                'validators' => [
+                    [
+                        'name' => Policy\Validator\PolicyDateValidator::class,
+                        'options' => [ 'date' => $form->get('start_date')->getValue() ],
+                    ]
+                ],
+            ]
+        );
+
+        $form->setInputFilter($inputFilters);
         $form->setData($request->getPost());
 
         // validate data
