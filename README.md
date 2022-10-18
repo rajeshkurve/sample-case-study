@@ -15,10 +15,10 @@ Execute data/schema.sql to crete the database
 Update DB credentials and connection string into file -
 
 config/autoload/global.php - update connecton sting 
-config/autoload/development.local.php - update db creditials
+Rename config/autoload/development.local.php.dist to config/autoload/development.local.php and update db creditials
 
 Test it using PHP's built-in web server:
 
-$ php -S 0.0.0.0:8081 -t public
+$ php -S 0.0.0.0:8081 -t public ( or any available port )
 
 visit http://localhost:8081/ 
