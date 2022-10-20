@@ -1,9 +1,9 @@
 <?php
 namespace Policy\Controller;
 
+use Laminas\Http\Response;
 use Laminas\Mvc\Controller\AbstractActionController;
 use Laminas\View\Model\ViewModel;
-
 use Policy\Model\PolicyTable;
 use Policy\Form\PolicyForm;
 use Policy\Model\Policy;
@@ -16,6 +16,12 @@ class PolicyController extends AbstractActionController
     {
         $this->table = $table;
     }
+
+    /**
+     * Listing of polices
+     *
+     * @return ViewModel
+     */
 
     public function indexAction()
     {
@@ -30,6 +36,11 @@ class PolicyController extends AbstractActionController
         return new ViewModel(['paginator' => $paginator]);
     }
 
+    /**
+     * Add new policy
+     *
+     * @return PolicyForm|void
+     */
     public function addAction()
     {
         $form = new PolicyForm();
@@ -64,9 +75,20 @@ class PolicyController extends AbstractActionController
 
         $policy->exchangeArray($form->getData());
         $this->table->savePolicy($policy);
-        return $this->redirect()->toRoute('policy');
+
+        $this->flashMessenger()->addSuccessMessage(
+            'Policy record added successfully.'
+        );
+
+        $this->redirect()->toRoute('policy');
     }
 
+
+    /**
+     * Update a policy record
+     *
+     * @return array|Response|void
+     */
     public function editAction()
     {
         $id = (int) $this->params()->fromRoute('id', 0);
@@ -116,16 +138,29 @@ class PolicyController extends AbstractActionController
 
         try {
             $this->table->savePolicy($policy);
+            $this->flashMessenger()->addSuccessMessage(
+                'Policy updated successfully.'
+            );
+
         } catch (\Exception $e) {
+            $this->flashMessenger()->addSuccessMessage(
+                "Error updating record: " . $e->getMessage()
+            );
         }
 
         // Redirect to policy list after saving
-        return $this->redirect()->toRoute('policy', ['action' => 'index']);
+        $this->redirect()->toRoute('policy', ['action' => 'index']);
     }
 
+    /**
+     * Delete a policy record
+     *
+     * @return array|Response
+     */
     public function deleteAction()
     {
         $id = (int) $this->params()->fromRoute('id', 0);
+
         if (!$id) {
             return $this->redirect()->toRoute('policy');
         }
@@ -137,14 +172,17 @@ class PolicyController extends AbstractActionController
             if ($del == 'Yes') {
                 $id = (int) $request->getPost('id');
                 $this->table->deletePolicy($id);
+                $this->flashMessenger()->addSuccessMessage(
+                    'Policy record deleted successfully.'
+                );
             }
 
-            // Redirect to list of policys
+            // Redirect to list of policy's
             return $this->redirect()->toRoute('policy');
         }
 
         return [
-            'id'    => $id,
+            'id'     => $id,
             'policy' => $this->table->getPolicy($id),
         ];
     }

@@ -3,10 +3,13 @@ $title = 'Policies | MMC';
 $this->headTitle($title);
 ?>
 <h1><?= $this->escapeHtml($title) ?></h1>
+    <br/>
+    <div class="alert-success" > <?= $this->flashMessenger()->render('success') ?></div>
+    <div class="alert-danger"> <?= $this->flashMessenger()->render('error') ?></div>
+
 <p class="float-right">
     <a href="<?= $this->url('policy', ['action' => 'add']) ?>" class="btn btn-success" >Add New Policy</a>
 </p>
-
 <table class="table">
     <tr>
         <th>First Name</th>

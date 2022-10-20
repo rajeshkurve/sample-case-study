@@ -45,37 +45,37 @@ echo $this->form()->openTag($form);
     <div class="form-group">
         <?= $this->formLabel($firstName) ?>
         <?= $this->formElement($firstName) ?>
-        <?= $this->formElementErrors()->render($firstName, ['class' => 'help-block']) ?>
+        <?= $this->formElementErrors()->render($firstName, ['class' => 'list-unstyled alert-danger']) ?>
     </div>
 
     <div class="form-group">
-        <?= $this->formLabel($lastName) ?>
+        <?= $this->formLabel($lastName) ?> *
         <?= $this->formElement($lastName) ?>
-        <?= $this->formElementErrors()->render($lastName, ['class' => 'help-block']) ?>
+        <?= $this->formElementErrors()->render($lastName, ['class' => 'list-unstyled alert-danger']) ?>
     </div>
 
     <div class="form-group">
-        <?= $this->formLabel($policyNumber) ?>
+        <?= $this->formLabel($policyNumber) ?> *
         <?= $this->formElement($policyNumber) ?>
-        <?= $this->formElementErrors()->render($policyNumber, ['class' => 'help-block']) ?>
+        <?= $this->formElementErrors()->render($policyNumber, ['class' => 'list-unstyled alert-danger']) ?>
     </div>
 
     <div class="form-group">
-        <?= $this->formLabel($startDate) ?>
+        <?= $this->formLabel($startDate) ?> *
         <?= $this->formElement($startDate) ?>
-        <?= $this->formElementErrors()->render($startDate, ['class' => 'help-block']) ?>
+        <?= $this->formElementErrors()->render($startDate, ['class' => 'list-unstyled alert-danger']) ?>
     </div>
 
     <div class="form-group">
-        <?= $this->formLabel($endDate) ?>
+        <?= $this->formLabel($endDate) ?> *
         <?= $this->formElement($endDate) ?>
-        <?= $this->formElementErrors()->render($endDate, ['class' => 'help-block']) ?>
+        <?= $this->formElementErrors()->render($endDate, ['class' => 'list-unstyled alert-danger']) ?>
     </div>
 
     <div class="form-group">
         <?= $this->formLabel($premium) ?>
         <?= $this->formElement($premium) ?>
-        <?= $this->formElementErrors()->render($premium, ['class' => 'help-block']) ?>
+        <?= $this->formElementErrors()->render($premium, ['class' => 'list-unstyled alert-danger']) ?>
     </div>
 
 <?php

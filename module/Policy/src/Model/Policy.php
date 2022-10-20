@@ -27,6 +27,12 @@ class Policy implements InputFilterAwareInterface
 
     private $inputFilter;
 
+    /**
+     * Assign values to properties
+     *
+     * @param array $data
+     * @return void
+     */
     public function exchangeArray(array $data)
     {
         $this->id           = !empty($data['id']) ? $data['id'] : null;
@@ -38,6 +44,11 @@ class Policy implements InputFilterAwareInterface
         $this->premium      = !empty($data['premium']) ? $data['premium'] : null;
     }
 
+    /**
+     * Get values as array
+     *
+     * @return array
+     */
     public function getArrayCopy()
     {
         return [
@@ -51,6 +62,10 @@ class Policy implements InputFilterAwareInterface
         ];
     }
 
+    /**
+     * @param InputFilterInterface $inputFilter
+     * @return InputFilterAwareInterface
+     */
     public function setInputFilter(InputFilterInterface $inputFilter)
     {
         throw new DomainException(sprintf(
@@ -59,6 +74,11 @@ class Policy implements InputFilterAwareInterface
         ));
     }
 
+    /**
+     * Get Input filters / validators applied to form
+     *
+     * @return InputFilter|InputFilterInterface
+     */
     public function getInputFilter()
     {
         if ($this->inputFilter) {

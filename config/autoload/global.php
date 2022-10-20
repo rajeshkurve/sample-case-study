@@ -17,4 +17,13 @@ return [
         'driver' => 'Pdo',
         'dsn'    => 'mysql:host=localhost;port=3306;dbname=mmm;',
     ],
+    'session_containers' => [
+        Laminas\Session\Container::class,
+    ],
+    'session_storage' => [
+        'type' => Laminas\Session\Storage\SessionArrayStorage::class,
+    ],
+    'session_config'  => [
+        'gc_maxlifetime' => 7200,
+    ],
 ];

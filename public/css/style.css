@@ -10,3 +10,7 @@
     background-color: var(--brand-color);
     border-color: var(--brand-color);
 }
+
+ul.list-unstyled.alert-danger {
+    padding: 3px;
+}

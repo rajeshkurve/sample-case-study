@@ -31,6 +31,9 @@ class PolicyTable
         // Create a new Select object for the table:
         $select = new Select($this->tableGateway->getTable());
 
+        // order is descending to show lastet added record on top
+        $select->order( 'id desc');
+
         // Create a new result set based on the Policy entity:
         $resultSetPrototype = new ResultSet();
         $resultSetPrototype->setArrayObjectPrototype(new Policy());
